@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blackbox-exporter
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+      - name: blackbox-exporter
+        image: dhi.io/blackbox-exporter:0-debian13-dev
+        args:
+          - "--config.file=/etc/blackbox/blackbox.yml"
+        ports:
+        - containerPort: 9210
+        volumeMounts:
+        - name: config
+          mountPath: /etc/blackbox
+      volumes:
+      - name: config
+        configMap:
+          name: blackbox-exporter

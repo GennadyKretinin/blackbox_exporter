@@ -5,6 +5,6 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 9115
+    port: 9210
   selector:
     app: blackbox-exporter
